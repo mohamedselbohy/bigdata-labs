@@ -14,6 +14,8 @@
       devShells.x86_64-linux.default = pkgs.mkShell {
         buildInputs = with pkgs; [
           jdk17
+          python3
+          python3Packages.virtualenv
           maven
           docker
           glibcLocales

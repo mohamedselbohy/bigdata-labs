@@ -4,3 +4,4 @@ labs/2/in.csv
 target/
 .m2/
 hadoop-lib/
+.venv/

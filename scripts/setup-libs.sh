@@ -26,3 +26,11 @@ else
 fi
 
 source "$SCRIPT_DIR/hadoop-funcs.sh"
+
+if [ -d "$ENV_ROOT/.venv" ]; then
+  source "$ENV_ROOT/.venv/bin/activate"
+else
+  python3 -m venv "$ENV_ROOT/.venv"
+  source "$ENV_ROOT/.venv/bin/activate"
+  pip install -r "$ENV_ROOT/requirements.txt"
+fi

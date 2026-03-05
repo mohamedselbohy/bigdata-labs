@@ -50,6 +50,25 @@ The shell automatically configures:
 - Java 17
 - Maven (with local repository at `.m2/repository`)
 - Hadoop classpath pointing to `hadoop-lib/`
+- Python 3 with virtualenv (venv in `.venv/`)
+
+## Python Development
+
+Python packages are managed via `requirements.txt`. The shell automatically creates and activates a virtual environment (`.venv/`) on first run.
+
+**Adding packages:**
+```bash
+# Add package to requirements.txt
+echo "package-name" >> requirements.txt
+
+# Re-enter nix develop to recreate venv with new packages
+# Or manually:
+source .venv/bin/activate
+pip install -r requirements.txt
+deactivate
+```
+
+**Available after activation:** `pyspark` is pre-installed.
 
 ## MapReduce Development
 
