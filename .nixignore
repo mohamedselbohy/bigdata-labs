@@ -1,0 +1,6 @@
+# Exclude large data files
+labs/2/in.csv
+# Exclude build artifacts (optional)
+target/
+.m2/
+hadoop-lib/
