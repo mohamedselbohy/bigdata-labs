@@ -7,6 +7,9 @@ LIBS_DIR="$ENV_ROOT/hadoop-lib"
 has_jars() {
   find "$LIBS_DIR" -name "*.jar" 2>/dev/null | head -1 | grep -q .
 }
+
+mkdir -p "$LIBS_DIR/mapreduce" "$LIBS_DIR/common" "$LIBS_DIR/hdfs" "$LIBS_DIR/yarn"
+
 if ! has_jars; then
   echo "Copying Hadoop Jars from temporary container..."
 
