@@ -32,5 +32,7 @@ if [ -d "$ENV_ROOT/.venv" ]; then
 else
   python3 -m venv "$ENV_ROOT/.venv"
   source "$ENV_ROOT/.venv/bin/activate"
-  pip install -r "$ENV_ROOT/requirements.txt"
 fi
+
+pip install -r "$ENV_ROOT/requirements.txt"
+python -m ipykernel install --user --name=pyspark --env PYSPARK_PYTHON python3

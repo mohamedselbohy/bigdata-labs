@@ -19,6 +19,9 @@
           maven
           docker
           glibcLocales
+          python3Packages.jupyter
+          python3Packages.jupyterlab
+          python3Packages.ipykernel
         ];
         shellHook = ''
           export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive"
