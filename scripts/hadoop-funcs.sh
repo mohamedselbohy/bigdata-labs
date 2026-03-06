@@ -17,6 +17,16 @@ hdfs-copy() {
   docker exec "$CONTAINER_NAME" bash -c "rm -rf /tmp/hdfs-copy-aux"
 }
 
+hdfs-get() {
+  local local_path="$2"
+  local hdfs_path="$1"
+  local aux_path="/tmp/hdfs-copy-aux/$(basename "$hdfs_path")"
+  docker exec "$CONTAINER_NAME" bash -c "mkdir -p /tmp/hdfs-copy-aux"
+  docker exec "$CONTAINER_NAME" bash -c "hdfs dfs -get $hdfs_path $aux_path"
+  docker cp "$CONTAINER_NAME:$aux_path" "$local_path"
+  docker exec "$CONTAINER_NAME" bash -c "rm -rf /tmp/hdfs-copy-aux"
+}
+
 hdfs-cat() {
   local hdfs_path="$1"
   docker exec "$CONTAINER_NAME" bash -c "hdfs dfs -cat $hdfs_path"
