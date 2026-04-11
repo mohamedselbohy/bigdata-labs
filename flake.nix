@@ -7,7 +7,11 @@
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        config = { };
+        config = {
+          allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) [
+            "terraform"
+          ];
+        };
       };
     in
     {
@@ -22,6 +26,7 @@
           python3Packages.jupyter
           python3Packages.jupyterlab
           python3Packages.ipykernel
+          terraform
         ];
         shellHook = ''
           export LOCALE_ARCHIVE="${pkgs.glibcLocales}/lib/locale/locale-archive"
@@ -31,6 +36,7 @@
           export HADOOP_LIB_DIR="$(pwd)/hadoop-lib"
           export HADOOP_CLASSPATH="$HADOOP_LIB_DIR/*"
           export MAVEN_OPTS="-Dmaven.repo.local=$(pwd)/.m2/repository"
+          source $(pwd)/.env
           source scripts/setup-libs.sh
         '';
       };
